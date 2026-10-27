@@ -1,0 +1,59 @@
+@model _25DH230109_MyStore.Models.ViewModel.ProductSearchVM
+@using PagedList.Mvc
+@{
+    Layout = null;
+    ViewBag.Title = "Quản lý sản phẩm";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản lý sản phẩm</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .search-panel { padding: 15px; margin-bottom: 18px; background: #f5f5f5; border-radius: 6px; }
+        .search-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+        .search-field { min-width: 150px; }
+        .search-field label { display: block; margin-bottom: 5px; }
+        .search-field input, .search-field select { padding: 7px; width: 100%; }
+        .product-image { max-width: 100px; max-height: 90px; object-fit: contain; }
+        table { width: 100%; }
+    </style>
+</head>
+<body>
+    <h2 class="text-bg-success p-2">Danh sách sản phẩm</h2>
+    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+    {
+        <div class="search-panel">
+            <div class="search-row">
+                <div class="search-field" style="flex:2">
+                    <label for="keyword">Từ khóa (tên, mô tả, danh mục)</label>
+                    @Html.TextBox("keyword", Model.Keyword, new { @class = "form-control", placeholder = "Nhập từ khóa..." })
+                </div>
+                <div class="search-field">
+                    <label for="minPrice">Giá từ</label>
+                    @Html.TextBox("minPrice", Model.MinPrice, new { @class = "form-control", type = "number", min = "0", step = "0.01" })
+                </div>
+                <div class="search-field">
+                    <label for="maxPrice">Đến giá</label>
+                    @Html.TextBox("maxPrice", Model.MaxPrice, new { @class = "form-control", type = "number", min = "0", step = "0.01" })
+                </div>
+                <div class="search-field">
+                    <label for="sortOrder">Sắp xếp</label>
+                    @Html.DropDownList("sortOrder", new SelectList(new[] {
+                        new SelectListItem { Text = "Tên A → Z", Value = "name_asc" },
+                        new SelectListItem { Text = "Tên Z → A", Value = "name_desc" },
+                        new SelectListItem { Text = "Giá tăng dần", Value = "price_asc" },
+                        new SelectListItem { Text = "Giá giảm dần", Value = "price_desc" }
+                    }, "Value", "Text", Model.SortOrder ?? "name_asc"), new { @class = "form-control" })
+                </div>
+                <div><button type="submit" class="btn btn-primary">Tìm kiếm</button></div>
+                <div>@Html.ActionLink("Xóa lọc", "Index", null, new { @class = "btn btn-secondary" })</div>
+            </div>
+        </div>
+    }
+    <p>@Html.ActionLink("+ Thêm sản phẩm", "Create", null, new { @class = "btn btn-success" })</p>
+    @Html.Partial("PVListProduct", Model)
+</body>
+</html>

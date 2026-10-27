@@ -1,0 +1,18 @@
+@model _25DH230109_MyStore.Models.Product
+<div class="container-fluid">
+    <h2 class="bg-success text-white p-2">Chi tiết sản phẩm</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content(string.IsNullOrWhiteSpace(Model.ProductImage) ? "~/Content/images/no-image.svg" : Model.ProductImage)" alt="@Model.ProductName" style="max-width:100%;max-height:250px" />
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-4">Tên sản phẩm</dt><dd class="col-sm-8">@Model.ProductName</dd>
+                <dt class="col-sm-4">Đơn giá</dt><dd class="col-sm-8">@Model.ProductPrice.ToString("N0")</dd>
+                <dt class="col-sm-4">Hình ảnh</dt><dd class="col-sm-8">@Model.ProductImage</dd>
+                <dt class="col-sm-4">Mô tả</dt><dd class="col-sm-8">@Model.ProductDescription</dd>
+                <dt class="col-sm-4">Danh mục</dt><dd class="col-sm-8">@(Model.Category == null ? "" : Model.Category.CategoryName)</dd>
+            </dl>
+        </div>
+    </div>
+</div>

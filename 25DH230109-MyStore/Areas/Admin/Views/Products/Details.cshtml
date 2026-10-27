@@ -1,0 +1,6 @@
+@model _25DH230109_MyStore.Models.Product
+@{ Layout = null; }
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width" />@Styles.Render("~/Content/css")</head><body class="container">
+    @Html.Partial("PVProductInfo", Model)
+    <p>@Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" }) @Html.ActionLink("Sửa sản phẩm", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-primary" })</p>
+</body></html>

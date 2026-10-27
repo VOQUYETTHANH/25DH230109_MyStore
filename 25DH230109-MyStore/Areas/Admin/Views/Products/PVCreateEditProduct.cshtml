@@ -1,0 +1,36 @@
+@model _25DH230109_MyStore.Models.Product
+<div class="form-horizontal">
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.CategoryID, "Danh mục", new { @class = "control-label" })
+        @Html.DropDownList("CategoryID", null, "-- Chọn danh mục --", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.ProductName, "Tên sản phẩm", new { @class = "control-label" })
+        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.ProductPrice, "Đơn giá", new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control", type = "number", min = "0", step = "0.01" })
+        @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.UploadImg, "Hình ảnh sản phẩm", new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.UploadImg, new { type = "file", @class = "form-control", accept = ".jpg,.jpeg,.png,.gif,.webp" })
+        @if (!string.IsNullOrWhiteSpace(Model?.ProductImage))
+        {
+            <p class="mt-2">Ảnh hiện tại:</p>
+            <img src="@Url.Content(Model.ProductImage)" alt="Ảnh sản phẩm" style="max-width:180px;max-height:150px" />
+        }
+        @Html.ValidationMessageFor(model => model.UploadImg, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group mb-3">
+        @Html.LabelFor(model => model.ProductDescription, "Mô tả", new { @class = "control-label" })
+        @Html.TextAreaFor(model => model.ProductDescription, new { @class = "form-control", rows = "5" })
+        @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group mb-3">
+        <input type="submit" value="Lưu" class="btn btn-primary" />
+    </div>
+</div>

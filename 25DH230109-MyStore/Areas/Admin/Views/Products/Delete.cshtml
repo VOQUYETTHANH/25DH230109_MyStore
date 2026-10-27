@@ -1,0 +1,13 @@
+@model _25DH230109_MyStore.Models.Product
+@{ Layout = null; }
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width" />@Styles.Render("~/Content/css")</head><body class="container">
+    <h2 class="text-danger">Xác nhận xóa sản phẩm</h2>
+    <p>Bạn có chắc muốn xóa sản phẩm này không?</p>
+    @Html.Partial("PVProductInfo", Model)
+    @using (Html.BeginForm("Delete", "Products", new { id = Model.ProductID }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Xóa sản phẩm</button>
+        @Html.ActionLink("Hủy", "Index", null, new { @class = "btn btn-secondary" })
+    }
+</body></html>

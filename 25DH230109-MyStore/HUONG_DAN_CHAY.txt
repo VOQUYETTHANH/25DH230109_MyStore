@@ -1,0 +1,18 @@
+HUONG DAN CHAY MY STORE
+=======================
+
+1. Giai nen file ZIP.
+2. Mo file 25DH230109_MyStore.csproj bang Visual Studio (Windows).
+3. Chon Restore NuGet Packages, sau do Build > Rebuild Solution.
+4. Ung dung dung ASP.NET MVC 5 / .NET Framework 4.8 va SQL Server.
+5. Trong Web.config, connection string MyStoreEntities dang ket noi SQL Server tai:
+   data source=.; initial catalog=MyStore; integrated security=True
+   Hay dam bao SQL Server instance '.' co database MyStore va cac bang theo Entity Framework model.
+6. Nhan F5 de chay.
+
+Da sua loi GET Edit/Delete trong CategoriesController (thieu return ActionResult),
+kiem tra category null truoc khi sua/xoa, sua lien ket va route trong giao dien Admin,
+va sua the div du trong partial view.
+
+LUU Y: ZIP goc khong co file database .mdf/.bak; do do can co database MyStore tren SQL
+Server. Khong the bao dam chay du lieu that neu database nay chua duoc tao/restore.
